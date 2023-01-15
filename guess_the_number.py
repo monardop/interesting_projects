@@ -6,13 +6,12 @@ from tkinter import ttk
 class App(ttk.Frame):
     def __init__(self, main_window):
         super().__init__(main_window)
-        main_window.title("Guess the number")
 
-        for n in range(5):
-            self.columnconfigure(n, weight=1)
-
-        self.commentator = ttk.Label(self, text="Hola buenos dias", borderwidth=2, relief="solid")
-        self.commentator.grid(row=1, column=1, columnspan=3, rowspan=2)
+        self.commentator = ttk.Label(
+            self, text="Guess the number",
+            borderwidth=10, relief="groove"
+            )
+        self.commentator.grid(row=0, column=0, columnspan=6, pady=30)
 
         self.try1 = ttk.Label(self, borderwidth=4, relief="solid", width=5)
         self.try1.grid(row=3, column=1)
@@ -26,18 +25,20 @@ class App(ttk.Frame):
         self.try5.grid(row=3, column=5)
 
         self.entry = ttk.Entry(self)
-        self.entry.grid(row=4, column=2)
+        self.entry.grid(row=4, column=1, columnspan=3)
+        self.submit = ttk.Button(self, text="Submit")
+        self.submit.grid(row=4, column=4, columnspan=2)
 
         self.pack()
 
-
-
-def hit_probability() -> str:
-    pass
+    def hit_probability(self) -> str:
+        pass
 
 
 if __name__ == '__main__':
     number: int = randint(0, 100)
     root = tk.Tk()
+    root.title("Guess the number")
+    root.geometry("200x200")
     app = App(root)
     app.mainloop()
